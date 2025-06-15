@@ -1,5 +1,18 @@
 
+function validateEmail(email)
+{
+    return /^[^@]+@[^@]+\.[^@]+$/.test(email);
+}
 
+function validatePassword(password)
+{
+    return password.length < 8;
+}
+
+function validateUsername(username)
+{
+    return username.length < 3;
+}
 document.addEventListener('DOMContentLoaded', () =>
     {
         console.log("DOM loaded OK");
@@ -22,17 +35,17 @@ document.addEventListener('DOMContentLoaded', () =>
             let isValid =  true;
             let messages = [];
     
-            if (usernameTrim.length < 3)
+            if (validateUsername(usernameTrim) == true)
             {
                 isValid = false;
                 messages.push("Username must be at least 3 characters long.");
             }
-            if (/^[^@]+@[^@]+\.[^@]+$/.test(emailTrim) == false)
+            if (validateEmail(emailTrim) == false)
             {
                 isValid = false;
                 messages.push("Email must be a valid address (e.g. user@example.com).");
             }
-            if (passwordTrim.length < 8)
+            if (validatePassword(passwordTrim) == true)
             {
                 isValid = false;
                 messages.push("Password must be at least 8 characters long.");
